@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Build Docker image') {
             steps {
-                def tag = ""
+            
                 bat "docker build -t jenkins:${env.BUILD_NUMBER} ."
             }
         }
