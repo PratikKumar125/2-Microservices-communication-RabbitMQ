@@ -1,12 +1,9 @@
 pipeline {
-    options {
-        // run the cleanWs step before every build
-        cleanWs()
-    }
     agent any
     stages {
         stage('Fetch code') {
             steps {
+                cleanWs()
                 bat 'git clone https://github.com/PratikKumar125/2-Microservices-communication-RabbitMQ.git'
             }
         }
