@@ -20,14 +20,14 @@ pipeline {
         }
         stage('Build Docker image') {
             steps {
-                def tag = "jenkins:${env.BUILD_NUMBER}-${env.BUILD_ID}-${env.BUILD_TIMESTAMP}"
-                bat "docker build -t ${tag} ."
+                def tag = ""
+                bat "docker build -t jenkins:${env.BUILD_NUMBER} ."
             }
         }
         stage('Push Docker image') {
             steps {
                 withCredentials([string(credentialsId: 'DOCKER-CREDS', variable: 'DOCKERHUB_CREDENTIALS')]) {
-                    bat "docker login -u pratikkumar378 -p %DOCKERHUB_CREDENTIALS% && docker push ${tag}"
+                    bat "docker login -u pratikkumar378 -p %DOCKERHUB_CREDENTIALS% && docker push jenkins:${env.BUILD_NUMBER}"
                 }
             }
         }
