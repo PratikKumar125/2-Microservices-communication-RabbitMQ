@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker { image 'node:latest' 
                  args '-v C:/Users/prate/.jenkins/workspace/docker-push:/app'}
+        
     }
     stages {
         stage('Fetch code') {
